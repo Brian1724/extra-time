@@ -99,6 +99,15 @@ button{font:inherit;color:inherit}
   transition:background-color .2s ease,color .2s ease,border-color .2s ease}
 .chip:hover{border-color:currentColor}
 
+/* 화면 끝까지 까는 렌더. 상자 대신 가장자리를 바탕색으로 녹여서 사진이 페이지에 얹히지 않고 놓이게 한다.
+   색은 채도를 조금 낮춰 짙은 초록·아이보리 두 색 세계에 맞춘다. */
+.bleed{position:relative;width:100vw;margin-inline:calc(50% - 50vw);overflow:hidden;background:var(--pub)}
+.bleed img{width:100%;height:100%;object-fit:cover;filter:saturate(.84) brightness(.95)}
+.bleed::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:
+    linear-gradient(180deg, var(--pub) 0%, rgba(32,40,31,0) 20%, rgba(32,40,31,0) 70%, var(--pub) 100%),
+    linear-gradient(90deg, rgba(32,40,31,.9) 0%, rgba(32,40,31,0) 16%, rgba(32,40,31,0) 84%, rgba(32,40,31,.9) 100%)}
+
 /* 페이지 끝, 다음 페이지로 넘기는 줄 */
 .next{padding-block:clamp(72px, 9vw, 128px)}
 .next__in{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:32px 48px}
@@ -148,9 +157,9 @@ button{font:inherit;color:inherit}
 @keyframes blink{50%{opacity:0}}
 
 .table{padding:clamp(72px, 9vw, 140px) 0 clamp(80px, 10vw, 150px)}
-.table__photo{aspect-ratio:2340 / 1316}
+.table__photo{aspect-ratio:2340 / 1316;max-height:92vh}
 .table__photo img{object-position:50% 60%}
-.table__foot{margin-top:clamp(40px, 5vw, 72px);display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:32px 48px}
+.table__foot{position:relative;margin-top:clamp(-96px, -5vw, -24px);display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:32px 48px}
 .table__copy{flex:1 1 520px;max-width:820px}
 .table__copy .eyebrow{margin-bottom:14px}
 .table__line{font-size:clamp(24px, 2.6vw, 38px);font-weight:500;line-height:1.45;letter-spacing:-.01em;color:var(--paper);text-wrap:balance}
@@ -164,7 +173,12 @@ button{font:inherit;color:inherit}
 .ot-head__name span{color:var(--ivory)}
 .ot-head__en{margin-top:clamp(24px, 3vw, 40px);font-size:clamp(17px, 1.4vw, 21px);font-weight:500;letter-spacing:.04em}
 .ot-head__ko{margin-top:8px;font-size:clamp(17px, 1.4vw, 21px);color:var(--on-pub-muted)}
-.ot-head__photo{flex:1 1 400px;max-width:500px;aspect-ratio:1392 / 1740}
+.ot-head__photo{position:relative;flex:1 1 400px;max-width:540px;aspect-ratio:1440 / 1800}
+.ot-head__photo img{width:100%;height:100%;object-fit:cover;filter:saturate(.84) brightness(.96)}
+.ot-head__photo::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:
+    linear-gradient(90deg, var(--pub) 0%, rgba(32,40,31,0) 26%, rgba(32,40,31,0) 80%, var(--pub) 100%),
+    linear-gradient(0deg, var(--pub) 0%, rgba(32,40,31,0) 24%, rgba(32,40,31,0) 80%, var(--pub) 100%)}
 
 .turn__in{display:flex;flex-wrap:wrap;align-items:center;gap:clamp(40px, 5vw, 96px)}
 .turn__viewer{flex:1 1 520px;min-width:0;display:flex;flex-direction:column;align-items:center;gap:20px}
@@ -205,67 +219,112 @@ button{font:inherit;color:inherit}
 .basic__note{margin-top:24px;font-size:15px;color:var(--muted)}
 .basic__fig{flex:1 1 520px;min-width:0;display:flex;justify-content:center}
 .basic__fig img{width:100%;max-width:640px;aspect-ratio:1072 / 1228;object-fit:contain;
-  /* 스튜디오 바탕이 paper와 미세하게 달라서 사진 경계가 보인다. 아래와 양옆을 흐린다 */
-  -webkit-mask-image:linear-gradient(180deg, #000 80%, transparent 100%), linear-gradient(90deg, transparent 0, #000 12%, #000 88%, transparent 100%);
-  -webkit-mask-composite:source-in;
-  mask-image:linear-gradient(180deg, #000 80%, transparent 100%), linear-gradient(90deg, transparent 0, #000 12%, #000 88%, transparent 100%);
-  mask-composite:intersect}
+}
 
 .place .split{margin-bottom:clamp(36px, 4vw, 56px)}
 .place__tag{font-size:clamp(18px, 1.6vw, 24px);font-weight:500}
-.place__list{display:flex;flex-direction:column;gap:clamp(16px, 2vw, 28px)}
-.place-card{position:relative;isolation:isolate;overflow:hidden;border-radius:4px;aspect-ratio:16 / 9;min-height:420px;background:#111}
-.place-card>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;transition:transform 1.2s var(--ease-out)}
-.place-card:hover>img{transform:scale(1.02)}
-.place-card__shade{position:absolute;inset:0;z-index:-1;
-  background:linear-gradient(90deg, rgba(10,12,10,.8) 0%, rgba(10,12,10,.42) 32%, rgba(10,12,10,0) 52%),
-             linear-gradient(180deg, rgba(10,12,10,0) 50%, rgba(10,12,10,.62) 100%)}
-.place-card__badge{position:absolute;top:clamp(16px, 2vw, 28px);right:clamp(16px, 2vw, 28px);padding:7px 14px;
+.place__list{display:flex;flex-direction:column}
+.place-card{--edge:max(var(--gutter), calc((100vw - 1520px) / 2 + var(--gutter)));
+  position:relative;isolation:isolate;overflow:hidden;width:100vw;margin-inline:calc(50% - 50vw);
+  aspect-ratio:16 / 9;min-height:420px;max-height:94vh;background:var(--pub)}
+.place-card>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-3;
+  filter:saturate(.82) brightness(.94);transform-origin:50% 75%;
+  transform:translate3d(0, var(--ty, 0px), 0) scale(var(--sc, 1.06))}
+/* 스크롤하면 배경과 오티가 서로 다른 속도로 움직여 깊이가 생긴다(main.js). 오티 판은 바닥 그림자 가장자리를 흐린다 */
+.place-card__bg{--ty:var(--bg-y, 0px)}
+.place-card__fig{--ty:var(--fig-y, 0px);z-index:-2 !important;
+  -webkit-mask-image:radial-gradient(ellipse 30% 62% at 50% 58%, #000 62%, transparent 100%);
+  mask-image:radial-gradient(ellipse 30% 62% at 50% 58%, #000 62%, transparent 100%)}
+.place-card__shade{position:absolute;inset:-2px 0;z-index:-1;
+  background:
+    linear-gradient(180deg, var(--pub) 0%, rgba(32,40,31,0) 16%, rgba(32,40,31,0) 62%, var(--pub) 100%),
+    linear-gradient(90deg, rgba(20,26,19,.86) 0%, rgba(20,26,19,.4) 30%, rgba(20,26,19,0) 50%)}
+.place-card__badge{position:absolute;top:clamp(56px, 7vw, 104px);right:var(--edge);padding:7px 14px;
   border:1px solid rgba(246,245,239,.5);border-radius:999px;background:rgba(20,24,19,.35);
   font-size:13px;font-weight:500;letter-spacing:.06em;color:var(--paper)}
-.place-card__copy{position:absolute;left:clamp(20px, 3vw, 48px);right:clamp(20px, 3vw, 48px);bottom:clamp(20px, 3vw, 44px);
+.place-card__copy{position:absolute;left:var(--edge);right:var(--edge);bottom:clamp(48px, 7vw, 112px);
 }
 .place-card__name{font-size:clamp(40px, 5.4vw, 88px);font-weight:700;line-height:1;letter-spacing:.02em;color:var(--paper);white-space:nowrap}
 .place-card__copy p{max-width:max(36%, 300px);margin-top:12px;font-size:clamp(15px, 1.2vw, 18px);line-height:1.6;text-wrap:pretty}
 .place__foot{margin-top:clamp(28px, 3vw, 40px);font-size:15px;color:var(--on-pub-muted)}
 
-.wear__img{width:100%;margin-top:clamp(24px, 3vw, 40px);aspect-ratio:1920 / 1024;object-fit:cover}
+.wear__img{width:100%;margin-top:clamp(8px, 2vw, 24px);aspect-ratio:2250 / 1200;object-fit:contain}
 .wear__names{display:grid;grid-template-columns:repeat(2, minmax(0, 1fr));gap:24px;margin-top:8px;text-align:center}
 .wear__names b{display:block;font-size:clamp(20px, 2vw, 28px);font-weight:700;letter-spacing:.08em}
 .wear__names span{display:block;margin-top:6px;font-size:15px;color:var(--muted)}
 
 /* ---------- 굿즈 ---------- */
-.set{padding:clamp(48px, 6vw, 96px) 0 1px}
-/* 두 밝은 섹션 사이 소수점 경계에서 어두운 바탕이 1px 비치지 않게 겹친다 */
-.set + .glass{margin-top:-1px}
-.set img{width:100%;aspect-ratio:1920 / 1234;object-fit:cover;border-radius:4px}
+.set{padding:clamp(24px, 3vw, 48px) 0 clamp(48px, 6vw, 96px)}
+.set img{width:100%;aspect-ratio:2304 / 1480;object-fit:contain}
+/* 투명 컷이라도 바닥 그림자가 렌더 가장자리에서 끊긴다. 가장자리만 흐린다 */
+.set img,.basic__fig img,.wear__img{
+  -webkit-mask-image:linear-gradient(90deg, transparent 0, #000 9%, #000 91%, transparent 100%), linear-gradient(0deg, transparent 0, #000 12%, #000 100%);
+  -webkit-mask-composite:source-in;
+  mask-image:linear-gradient(90deg, transparent 0, #000 9%, #000 91%, transparent 100%), linear-gradient(0deg, transparent 0, #000 12%, #000 100%);
+  mask-composite:intersect}
 
 .duo{display:flex;flex-wrap:wrap;align-items:center;gap:clamp(32px, 5vw, 96px)}
 .duo__copy{flex:1 1 360px;min-width:0;max-width:520px}
-.glass__photo{flex:1 1 520px;min-width:0;aspect-ratio:4 / 3;background:#d9d9d6}
+.glass__photo{position:relative;flex:1 1 520px;min-width:0;aspect-ratio:2048 / 1536;
+  -webkit-mask-image:linear-gradient(90deg, transparent 0, #000 9%, #000 91%, transparent 100%), linear-gradient(0deg, transparent 0, #000 12%, #000 100%);
+  -webkit-mask-composite:source-in;
+  mask-image:linear-gradient(90deg, transparent 0, #000 9%, #000 91%, transparent 100%), linear-gradient(0deg, transparent 0, #000 12%, #000 100%);
+  mask-composite:intersect}
+.glass__photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain}
+.glass__lit{--edge:calc(var(--sweep, 1) * 140% - 30%);
+  -webkit-mask-image:linear-gradient(100deg, #000 calc(var(--edge) - 12%), transparent calc(var(--edge) + 12%));
+  mask-image:linear-gradient(100deg, #000 calc(var(--edge) - 12%), transparent calc(var(--edge) + 12%))}
+
+.sec--dark .glass__title{color:var(--paper)}
 .glass__title{font-size:clamp(30px, 3.2vw, 46px);font-weight:700;line-height:1.3;letter-spacing:-.02em;text-wrap:pretty}
 .glass .body-muted{margin-top:24px}
 
 .coaster .duo{gap:clamp(40px, 6vw, 112px)}
 .coaster .body-muted{margin-top:20px}
 .chips{margin-top:clamp(28px, 3vw, 40px);display:flex;flex-wrap:wrap;gap:8px}
-.chips .chip{border-color:rgba(236,235,227,.32);color:var(--on-pub)}
-.chips .chip[aria-pressed="true"]{background:var(--paper);border-color:var(--paper);color:var(--ink)}
+.chips .chip{color:var(--ink)}
+.chips .chip[aria-pressed="true"]{background:var(--charcoal);border-color:var(--charcoal);color:var(--paper)}
 .coaster__view{flex:1 1 420px;min-width:0;display:flex;flex-direction:column;align-items:center;gap:20px}
 .flip{position:relative;width:min(100%, 460px);aspect-ratio:1 / 1;padding:0;border:0;border-radius:50%;background:none;cursor:pointer;perspective:1400px}
 .flip__card{position:absolute;inset:0;display:block;transform-style:preserve-3d;transition:transform .7s cubic-bezier(.65,0,.35,1)}
 .flip[aria-pressed="true"] .flip__card{transform:rotateY(180deg)}
 .flip img{position:absolute;inset:0;width:100%;height:100%;border-radius:50%;
-  backface-visibility:hidden;-webkit-backface-visibility:hidden;box-shadow:0 24px 60px rgba(0,0,0,.35)}
+  backface-visibility:hidden;-webkit-backface-visibility:hidden;box-shadow:0 22px 48px rgba(20,23,18,.22), 0 4px 10px rgba(20,23,18,.12)}
 .flip .flip__back{transform:rotateY(180deg)}
-.coaster__hint{font-size:14px;color:var(--on-pub-muted)}
+.coaster__hint{font-size:14px;color:var(--muted)}
 
-.last .duo{gap:clamp(32px, 6vw, 112px)}
-.last__photo{flex:1 1 420px;max-width:620px;min-width:0;aspect-ratio:1440 / 1680;background:#111}
-.last__copy{flex:1 1 360px;min-width:0}
-.last__title{font-size:clamp(56px, 8vw, 132px);font-weight:700;line-height:.95;letter-spacing:.01em;color:var(--paper)}
-.last .lead{margin-top:clamp(24px, 3vw, 36px)}
-.last .btn{margin-top:clamp(28px, 3vw, 40px)}
+
+/* ---------- 굿즈 끝: 불 끄기 ----------
+   홈 첫 화면과 같은 바. 스크롤하면 조명이 하나씩 꺼지고 시그니처 라인만 남는다(블렌더 렌더 두 장을 섞는다).
+   오티가 마지막 기록을 남기고 노트북을 덮으면 라인까지 꺼진다(main.js). */
+.close{position:relative;background:#0c100b}
+.close__stage{position:relative;min-height:100vh;min-height:100svh;display:flex;align-items:flex-end;overflow:hidden;isolation:isolate}
+.close.is-live{height:280vh}
+.close.is-live .close__stage{position:sticky;top:0;height:100vh;height:100svh}
+.close__on,.close__off{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:46% 38%}
+.close__off{z-index:-4}
+.close__on{z-index:-3;opacity:calc(1 - var(--dim, 1))}
+.close__shade{position:absolute;inset:0;z-index:-2;pointer-events:none;
+  background:linear-gradient(180deg, var(--pub) 0%, rgba(32,40,31,0) 16%, rgba(12,16,11,.15) 50%, rgba(12,16,11,.9) 86%, #0c100b 100%)}
+.close__shade::after{content:"";position:absolute;inset:0;background:#060806;opacity:0}
+.close.is-off .close__shade::after{animation:lights-out 1.4s steps(1, end) forwards}
+@keyframes lights-out{0%{opacity:0}10%{opacity:.7}14%{opacity:.08}30%{opacity:.82}34%{opacity:.3}52%,100%{opacity:.9}}
+.close__in{display:flex;flex-direction:column;align-items:center;text-align:center;gap:clamp(18px, 2.4vw, 28px);
+  padding-top:140px;padding-bottom:clamp(64px, 12vh, 128px)}
+.close__brand{position:relative;width:clamp(200px, 24vw, 340px)}
+.close__line{width:100%;height:auto;color:#f6e7c8;overflow:visible;
+  filter:drop-shadow(0 0 4px rgba(255,214,150,.75)) drop-shadow(0 0 22px rgba(229,170,80,.4));
+  transition:color 1.2s ease .5s, filter 1.2s ease .5s}
+.close.is-off .close__line{color:rgba(197,189,167,.22);filter:none}
+.ot--still{cursor:default}
+.ot--still:hover{filter:none}
+.close .ot{transition:filter 1.6s ease .5s}
+.close.is-off .ot{filter:brightness(.5)}
+.close__log{justify-content:center}
+.close.is-off .log__cursor{animation:none;opacity:0}
+.close__last{font-size:clamp(22px, 2.4vw, 34px);font-weight:500;line-height:1.5;color:var(--paper);text-wrap:balance}
+.close.is-live .close__last{opacity:0;transform:translateY(10px);transition:opacity 1.2s ease 1.4s, transform 1.4s var(--ease-out) 1.4s}
+.close.is-live.is-off .close__last{opacity:1;transform:none}
 
 /* ---------- 푸터 ---------- */
 .foot{border-top:1px solid rgba(197,189,167,.16);background:var(--pub)}
@@ -279,11 +338,16 @@ button{font:inherit;color:inherit}
 /* ---------- 휴대폰 ---------- */
 @media (max-width: 700px){
   /* 장소 에디션: 글이 피규어를 가리지 않게 사진 아래로 내린다 */
-  .place-card{aspect-ratio:auto;min-height:0;background:transparent;overflow:visible}
-  .place-card>img{position:relative;inset:auto;height:auto;aspect-ratio:4 / 3;border-radius:4px;z-index:0}
-  .place-card:hover>img{transform:none}
-  .place-card__shade{display:none}
-  .place-card__copy{position:static;max-width:none;padding:20px 0 12px}
+  .place-card{aspect-ratio:auto;min-height:0;max-height:none}
+  /* 휴대폰에서는 배경을 고정하고 오티 판만 움직인다(확대한 배경이 화면 밖으로 넘치지 않게) */
+  .place-card>img{transform:translate3d(0, var(--ty, 0px), 0)}
+  .place-card__bg{--ty:0px}
+  .place-card__bg{position:relative !important;inset:auto;height:auto !important;aspect-ratio:4 / 3}
+  .place-card__fig{inset:0 0 auto !important;height:auto !important;aspect-ratio:4 / 3}
+  .place-card__shade{bottom:auto;aspect-ratio:4 / 3;
+    background:linear-gradient(180deg, var(--pub) 0%, rgba(32,40,31,0) 18%, rgba(32,40,31,0) 72%, var(--pub) 100%)}
+  .place-card__badge{top:20px}
+  .place-card__copy{position:static;max-width:none;padding:4px var(--gutter) 40px}
   .place-card__copy p{max-width:none}
 }
 @media (max-width: 560px){
@@ -296,8 +360,10 @@ button{font:inherit;color:inherit}
 
 @media (prefers-reduced-motion: reduce){
   .enter,.enter-2,.log__cursor{animation:none}
-  .photo img,.place-card>img,.btn,.btn .arr,.bar__nav a::after,.flip__card,.chip,.trait,.ot{transition:none}
-  .photo:hover img,.place-card:hover>img{transform:none}
+  .photo img,.btn,.btn .arr,.bar__nav a::after,.flip__card,.chip,.trait,.ot,.close__line,.close__last{transition:none}
+  .photo:hover img{transform:none}
+  .place-card>img{transform:scale(1.02)}
+  .close.is-off .close__shade::after{animation:none;opacity:.9}
 }
 
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}

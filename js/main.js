@@ -144,3 +144,74 @@
     setFlipped(false);
   }));
 })();
+
+/* ---------- 스크롤 연출 공통 ----------
+   매 프레임 한 번만 계산한다. 움직임 줄이기 설정이면 연출 없이 마지막 장면을 보여 준다. */
+const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const clamp01 = v => Math.max(0, Math.min(1, v));
+function onScrollFrame(fn) {
+  let raf = 0;
+  const run = () => { raf = 0; fn(); };
+  addEventListener('scroll', () => { if (!raf) raf = requestAnimationFrame(run); }, { passive: true });
+  addEventListener('resize', run);
+  run();
+}
+
+/* ---------- 에디션: 장소 카드의 깊이 ----------
+   같은 카메라로 렌더한 배경 판과 오티 판이 서로 다른 속도로 움직인다. 카드가 화면 가운데 오면 두 판이 원래 자리에서 맞물린다. */
+(() => {
+  const cards = [...document.querySelectorAll('[data-depth]')];
+  if (!cards.length || reduceMotion) return;
+  onScrollFrame(() => {
+    const vh = innerHeight;
+    for (const c of cards) {
+      const r = c.querySelector('.place-card__bg').getBoundingClientRect();
+      if (r.bottom < -100 || r.top > vh + 100) continue;
+      const q = Math.max(-1, Math.min(1, (r.top + r.height / 2 - vh / 2) / (vh / 2 + r.height / 2)));
+      c.style.setProperty('--bg-y', (q * -2.5).toFixed(2) + '%');
+      c.style.setProperty('--fig-y', (q * -7).toFixed(2) + '%');
+      c.style.setProperty('--sc', (1.1 - .04 * (1 - Math.abs(q))).toFixed(4));
+    }
+  });
+})();
+
+/* ---------- 굿즈: 맥주잔에 빛이 지나간다 ----------
+   잔이 화면 아래 10%에 닿을 때 시작해서 위 20%에 이를 때 다 밝아진다. */
+(() => {
+  const f = document.querySelector('[data-sweep]');
+  if (!f || reduceMotion) return;
+  onScrollFrame(() => {
+    const vh = innerHeight, top = f.getBoundingClientRect().top;
+    f.style.setProperty('--sweep', clamp01((vh * .9 - top) / (vh * .7)).toFixed(3));
+  });
+})();
+
+/* ---------- 굿즈 끝: 불 끄기 ----------
+   스크롤 40%까지 조명이 꺼지고 시그니처 라인만 남는다. 45%를 넘으면 오티가 마지막 기록을 남기고 노트북을 덮는다.
+   다 덮으면 라인까지 꺼진다. 위로 되돌아가면 처음 상태로. */
+(() => {
+  const sec = document.getElementById('close');
+  if (!sec || !window.PixelOT) return;
+  const LINE = '오늘 기록 끝. 불 끕니다', START = '마지막 손님이 일어났어요';
+  const ot = window.PixelOT(document.getElementById('ot-close'), {
+    log: document.getElementById('close-log'),
+    logText: document.getElementById('close-log-text'),
+  });
+  if (reduceMotion) { sec.classList.add('is-off'); ot.finish(LINE); return; }
+  sec.classList.add('is-live');
+  let state = 'on';
+  onScrollFrame(() => {
+    const r = sec.getBoundingClientRect(), span = r.height - innerHeight;
+    const p = span > 0 ? clamp01(-r.top / span) : 0;
+    sec.style.setProperty('--dim', clamp01(p / .4).toFixed(3));
+    if (state === 'on' && p > .45) {
+      state = 'closing';
+      ot.play(LINE, () => {
+        if (state !== 'closing') return;
+        state = 'off'; sec.classList.add('is-off'); ot.setStill(true);
+      });
+    } else if (state !== 'on' && p < .2) {
+      state = 'on'; sec.classList.remove('is-off'); ot.reset(START);
+    }
+  });
+})();

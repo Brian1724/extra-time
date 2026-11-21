@@ -11,6 +11,9 @@
 <meta property="og:image" content="assets/img/pub_bar-1280.webp">
 <link rel="icon" href="assets/svg/et_symbol_small.svg" type="image/svg+xml">
 <link rel="preload" href="assets/fonts/paperlogy-700.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding&amp;display=swap">
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -46,14 +49,15 @@
 
   <section class="set sec--paper" aria-label="굿즈 전체">
     <div class="wrap">
-      <img src="assets/img/goods_complete_set-1280.webp" srcset="assets/img/goods_complete_set-800.webp 800w, assets/img/goods_complete_set-1280.webp 1280w, assets/img/goods_complete_set-1920.webp 1920w" sizes="(min-width: 1520px) 1392px, calc(100vw - 32px)" width="1920" height="1234" fetchpriority="high" alt="오티 맥주잔과 코스터 세 장, 전북 오티 피규어를 한자리에 놓은 사진. 잔에는 맥주가 차 있고 코스터에는 시그니처 라인이 새겨져 있다.">
+      <img src="assets/img/goods_complete_set-cut-1280.webp" srcset="assets/img/goods_complete_set-cut-800.webp 800w, assets/img/goods_complete_set-cut-1280.webp 1280w, assets/img/goods_complete_set-cut-1920.webp 1920w" sizes="(min-width: 1520px) 1392px, calc(100vw - 32px)" width="2304" height="1480" fetchpriority="high" alt="오티 맥주잔과 코스터 세 장, 전북 오티 피규어를 한자리에 놓은 사진. 잔에는 맥주가 차 있고 코스터에는 시그니처 라인이 새겨져 있다.">
     </div>
   </section>
 
-  <section class="sec sec--paper glass" aria-labelledby="glass-title">
+  <section class="sec sec--dark glass" aria-labelledby="glass-title">
     <div class="wrap duo">
-      <figure class="photo glass__photo">
-        <img src="assets/img/goods_glass_reverse-1280.webp" srcset="assets/img/goods_glass_reverse-800.webp 800w, assets/img/goods_glass_reverse-1280.webp 1280w, assets/img/goods_glass_reverse-1920.webp 1920w" sizes="(min-width: 1200px) 760px, calc(100vw - 32px)" width="1920" height="1440" loading="lazy" decoding="async" alt="맥주를 채운 오티 맥주잔의 앞면과 뒷면. 앞면에는 반투명하게 새긴 오티 머리, 뒷면에는 OT 글자가 보인다.">
+      <figure class="glass__photo" data-sweep>
+        <img class="glass__dim" src="assets/img/goods_glass_reverse-dim-1280.webp" srcset="assets/img/goods_glass_reverse-dim-800.webp 800w, assets/img/goods_glass_reverse-dim-1280.webp 1280w, assets/img/goods_glass_reverse-dim-1920.webp 1920w" sizes="(min-width: 1200px) 760px, calc(100vw - 32px)" width="2048" height="1536" loading="lazy" decoding="async" alt="">
+        <img class="glass__lit" src="assets/img/goods_glass_reverse-dark-1280.webp" srcset="assets/img/goods_glass_reverse-dark-800.webp 800w, assets/img/goods_glass_reverse-dark-1280.webp 1280w, assets/img/goods_glass_reverse-dark-1920.webp 1920w" sizes="(min-width: 1200px) 760px, calc(100vw - 32px)" width="2048" height="1536" loading="lazy" decoding="async" alt="어둠 속에서 맥주를 채운 오티 맥주잔 두 개. 앞면에는 반투명하게 새긴 오티 머리와 얼굴선, 뒷면에는 OT 글자가 호박색 맥주 위로 떠오른다.">
       </figure>
       <div class="duo__copy">
         <p class="eyebrow">BEER GLASS</p>
@@ -63,7 +67,7 @@
     </div>
   </section>
 
-  <section class="sec sec--dark coaster" aria-labelledby="coaster-title">
+  <section class="sec sec--paper coaster" aria-labelledby="coaster-title">
     <div class="wrap duo">
       <div class="duo__copy">
         <p class="eyebrow">COASTER</p>
@@ -89,15 +93,22 @@
     </div>
   </section>
 
-  <section class="sec sec--deep last" aria-labelledby="last-call">
-    <div class="wrap duo">
-      <figure class="photo last__photo">
-        <img src="assets/img/pub_sign-960.webp" srcset="assets/img/pub_sign-640.webp 640w, assets/img/pub_sign-960.webp 960w, assets/img/pub_sign-1440.webp 1440w" sizes="(min-width: 1200px) 620px, calc(100vw - 32px)" width="1440" height="1680" loading="lazy" decoding="async" alt="펍 벽에 매달린 둥근 EXTRA TIME 간판. 가운데에 V자로 꺾인 빛의 선이 켜져 있고, 아래 선반에 오티 두 명이 서 있다.">
-      </figure>
-      <div class="last__copy">
-        <h2 id="last-call" class="last__title">LAST<br>CALL</h2>
-        <p class="lead">오늘도 마지막 사람이 일어날 때까지.</p>
-        <a class="btn" href="index.html">처음으로<span class="arr" aria-hidden="true">→</span></a>
+  <section class="close" id="close" aria-labelledby="close-line">
+    <div class="close__stage">
+      <img class="close__on" src="assets/img/pub_bar-1280.webp" srcset="assets/img/pub_bar-800.webp 800w, assets/img/pub_bar-1280.webp 1280w, assets/img/pub_bar-1920.webp 1920w" sizes="100vw" width="2400" height="1350" loading="lazy" decoding="async" alt="">
+      <img class="close__off" src="assets/img/pub_bar-close-1280.webp" srcset="assets/img/pub_bar-close-800.webp 800w, assets/img/pub_bar-close-1280.webp 1280w, assets/img/pub_bar-close-1920.webp 1920w" sizes="100vw" width="2400" height="1350" loading="lazy" decoding="async" alt="">
+      <div class="close__shade" aria-hidden="true"></div>
+      <div class="wrap close__in">
+        <div class="close__brand">
+          <span class="ot ot--still" id="ot-close" role="img" aria-label="노트북을 덮는 픽셀 오티">
+            <canvas width="32" height="34" aria-hidden="true"></canvas>
+          </span>
+          <svg class="close__line" viewBox="0 0 326.12 46" aria-hidden="true"><path fill="currentColor" d="M0 0L113.01 0A14 14 0 0 1 124.96 6.7L141.69 34.09A4 4 0 0 0 145.11 36L162.46 36L162.46 46L145.11 46A14 14 0 0 1 133.16 39.3L116.43 11.91A4 4 0 0 0 113.01 10L6.12 10ZM163.66 36L181.01 36A4 4 0 0 0 184.43 34.09L201.16 6.7A14 14 0 0 1 213.11 0L326.12 0L320 10L213.11 10A4 4 0 0 0 209.69 11.91L192.96 39.3A14 14 0 0 1 181.01 46L163.66 46Z"/></svg>
+        </div>
+        <p class="log close__log" id="close-log" aria-live="polite">
+          <span class="log__pr" aria-hidden="true">OT&gt;</span><span class="log__text" id="close-log-text">마지막 손님이 일어났어요</span><span class="log__cursor" aria-hidden="true"></span>
+        </p>
+        <h2 class="close__last" id="close-line">오티는 다음 경기가 끝나면<br>다시 나타납니다.</h2>
       </div>
     </div>
   </section>
@@ -117,6 +128,7 @@
     </div>
   </div>
 </footer>
+<script src="js/pixel-ot.js" defer></script>
 <script src="js/main.js" defer></script>
 </body>
 </html>

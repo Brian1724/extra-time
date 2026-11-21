@@ -51,15 +51,15 @@
         <h2 id="base-title" class="h2">기본 에디션</h2>
         <p class="body-muted">서 있는 오티에 지역 유니폼을 입혔습니다. 언제든 만날 수 있습니다.</p>
         <div class="tabs" role="tablist" aria-label="지역">
-            <button class="chip" type="button" role="tab" id="tab-jeonbuk" aria-controls="region-panel" aria-selected="true" tabindex="0" data-img="jeonbuk_front" data-note="포레스트 그린, 차콜, 아이보리" data-alt="전북 유니폼을 입은 오티의 정면. 짙은 초록 상의와 반바지, 얼굴에는 V자 선 하나.">전북</button>
-            <button class="chip" type="button" role="tab" id="tab-seoul" aria-controls="region-panel" aria-selected="false" tabindex="-1" data-img="seoul_front" data-note="차콜과 채도를 낮춘 붉은 줄무늬" data-alt="서울 유니폼을 입은 오티의 정면. 검붉은 세로 줄무늬 상의.">서울</button>
-            <button class="chip" type="button" role="tab" id="tab-gwangju" aria-controls="region-panel" aria-selected="false" tabindex="-1" data-img="gwangju_front" data-note="따뜻한 아이보리와 붉은 포인트" data-alt="광주 유니폼을 입은 아이보리색 오티의 정면. 흰 상의에 붉은 글자와 줄.">광주</button>
+            <button class="chip" type="button" role="tab" id="tab-jeonbuk" aria-controls="region-panel" aria-selected="true" tabindex="0" data-img="jeonbuk_front-cut" data-note="포레스트 그린, 차콜, 아이보리" data-alt="전북 유니폼을 입은 오티의 정면. 짙은 초록 상의와 반바지, 얼굴에는 V자 선 하나.">전북</button>
+            <button class="chip" type="button" role="tab" id="tab-seoul" aria-controls="region-panel" aria-selected="false" tabindex="-1" data-img="seoul_front-cut" data-note="차콜과 채도를 낮춘 붉은 줄무늬" data-alt="서울 유니폼을 입은 오티의 정면. 검붉은 세로 줄무늬 상의.">서울</button>
+            <button class="chip" type="button" role="tab" id="tab-gwangju" aria-controls="region-panel" aria-selected="false" tabindex="-1" data-img="gwangju_front-cut" data-note="따뜻한 아이보리와 붉은 포인트" data-alt="광주 유니폼을 입은 아이보리색 오티의 정면. 흰 상의에 붉은 글자와 줄.">광주</button>
         </div>
         <p class="basic__note" id="region-note">포레스트 그린, 차콜, 아이보리</p>
       </div>
       <figure class="basic__fig" role="tabpanel" id="region-panel" aria-labelledby="tab-jeonbuk">
-        <img id="region-img" src="assets/img/jeonbuk_front-1072.webp"
-             srcset="assets/img/jeonbuk_front-640.webp 640w, assets/img/jeonbuk_front-1072.webp 1072w"
+        <img id="region-img" src="assets/img/jeonbuk_front-cut-1072.webp"
+             srcset="assets/img/jeonbuk_front-cut-640.webp 640w, assets/img/jeonbuk_front-cut-1072.webp 1072w"
              sizes="(min-width: 1200px) 640px, calc(100vw - 32px)" width="1072" height="1228" alt="전북 유니폼을 입은 오티의 정면. 짙은 초록 상의와 반바지, 얼굴에는 V자 선 하나.">
       </figure>
     </div>
@@ -75,8 +75,9 @@
         <p class="place__tag">끝난 자리의 이름, 그날의 동작.</p>
       </div>
       <div class="place__list">
-        <article class="place-card" aria-labelledby="monza">
-          <img src="assets/img/feature_monza-1280.webp" srcset="assets/img/feature_monza-800.webp 800w, assets/img/feature_monza-1280.webp 1280w, assets/img/feature_monza-1920.webp 1920w" sizes="(min-width: 1520px) 1392px, calc(100vw - 32px)" width="1920" height="1080" loading="lazy" decoding="async" alt="어두운 무대 위의 오티. 메르세데스 레이싱 셔츠를 입고 두 팔을 수평으로 펴서, 팔이 얼굴의 선과 나란히 놓인다.">
+        <article class="place-card" aria-labelledby="monza" data-depth>
+          <img class="place-card__bg" src="assets/img/feature_monza-bg-1280.webp" srcset="assets/img/feature_monza-bg-800.webp 800w, assets/img/feature_monza-bg-1280.webp 1280w, assets/img/feature_monza-bg-1920.webp 1920w" sizes="100vw" width="2400" height="1350" loading="lazy" decoding="async" alt="">
+          <img class="place-card__fig" src="assets/img/feature_monza-fig-1280.webp" srcset="assets/img/feature_monza-fig-800.webp 800w, assets/img/feature_monza-fig-1280.webp 1280w, assets/img/feature_monza-fig-1920.webp 1920w" sizes="100vw" width="2400" height="1350" loading="lazy" decoding="async" alt="어두운 무대 위의 오티. 메르세데스 레이싱 셔츠를 입고 두 팔을 수평으로 펴서, 팔이 얼굴의 선과 나란히 놓인다.">
           <div class="place-card__shade" aria-hidden="true"></div>
           <p class="place-card__badge">경기 직후 한정</p>
           <div class="place-card__copy">
@@ -84,8 +85,9 @@
             <p>이탈리아 그랑프리가 끝난 밤. 수평으로 편 두 팔이 얼굴의 선과 나란히 놓인다.</p>
           </div>
         </article>
-        <article class="place-card" aria-labelledby="bernabeu">
-          <img src="assets/img/feature_bernabeu-1280.webp" srcset="assets/img/feature_bernabeu-800.webp 800w, assets/img/feature_bernabeu-1280.webp 1280w, assets/img/feature_bernabeu-1920.webp 1920w" sizes="(min-width: 1520px) 1392px, calc(100vw - 32px)" width="1920" height="1080" loading="lazy" decoding="async" alt="불 꺼진 경기장 관중석 앞의 오티. 레알 마드리드 흰 유니폼을 입고 양팔을 위로 크게 벌리고 있다.">
+        <article class="place-card" aria-labelledby="bernabeu" data-depth>
+          <img class="place-card__bg" src="assets/img/feature_bernabeu-bg-1280.webp" srcset="assets/img/feature_bernabeu-bg-800.webp 800w, assets/img/feature_bernabeu-bg-1280.webp 1280w, assets/img/feature_bernabeu-bg-1920.webp 1920w" sizes="100vw" width="2400" height="1350" loading="lazy" decoding="async" alt="">
+          <img class="place-card__fig" src="assets/img/feature_bernabeu-fig-1280.webp" srcset="assets/img/feature_bernabeu-fig-800.webp 800w, assets/img/feature_bernabeu-fig-1280.webp 1280w, assets/img/feature_bernabeu-fig-1920.webp 1920w" sizes="100vw" width="2400" height="1350" loading="lazy" decoding="async" alt="불 꺼진 경기장 관중석 앞의 오티. 레알 마드리드 흰 유니폼을 입고 양팔을 위로 크게 벌리고 있다.">
           <div class="place-card__shade" aria-hidden="true"></div>
           <p class="place-card__badge">경기 직후 한정</p>
           <div class="place-card__copy">
@@ -107,7 +109,7 @@
         </div>
         <p class="body-muted">유니폼이 아닌 옷도 입습니다.</p>
       </div>
-      <img class="wear__img" src="assets/img/traditional_lineup-1280.webp" srcset="assets/img/traditional_lineup-800.webp 800w, assets/img/traditional_lineup-1280.webp 1280w, assets/img/traditional_lineup-1920.webp 1920w" sizes="(min-width: 1520px) 1392px, calc(100vw - 32px)" width="1920" height="1024" loading="lazy" decoding="async" alt="나란히 선 두 오티. 왼쪽은 붉은 타탄 킬트와 베레모 차림, 오른쪽은 연한 하늘색 도포에 부채를 들었다.">
+      <img class="wear__img" src="assets/img/traditional_lineup-cut-1280.webp" srcset="assets/img/traditional_lineup-cut-800.webp 800w, assets/img/traditional_lineup-cut-1280.webp 1280w, assets/img/traditional_lineup-cut-1920.webp 1920w" sizes="(min-width: 1520px) 1392px, calc(100vw - 32px)" width="2250" height="1200" loading="lazy" decoding="async" alt="나란히 선 두 오티. 왼쪽은 붉은 타탄 킬트와 베레모 차림, 오른쪽은 연한 하늘색 도포에 부채를 들었다.">
       <div class="wear__names">
         <p><b>GLASGOW</b><span>스코틀랜드 팬의 킬트</span></p>
         <p><b>JEONJU</b><span>소리 공연 뒤의 도포와 부채</span></p>
