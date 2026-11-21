@@ -13,7 +13,7 @@
 <link rel="preload" href="assets/fonts/paperlogy-700.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding&amp;display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding&amp;family=Nanum+Pen+Script&amp;display=swap">
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -84,12 +84,27 @@
       <div class="coaster__view">
         <button class="flip" id="flip" type="button" aria-pressed="false" aria-label="코스터 뒤집어 뒷면 보기">
           <span class="flip__card">
-            <img id="coaster-front" src="assets/svg/ot_coaster_front_jeonbuk.svg" width="460" height="460" alt="전북 코스터 앞면. 짙은 초록 바탕에 오티 머리와 아이보리 얼굴선.">
-            <img class="flip__back" src="assets/svg/ot_coaster_back.svg" width="460" height="460" loading="lazy" alt="코스터 뒷면. AFTER, DATE, WITH 세 줄을 적는 기록면.">
+            <img class="flip__face" id="coaster-front" src="assets/svg/ot_coaster_front_jeonbuk.svg" width="460" height="460" alt="전북 코스터 앞면. 짙은 초록 바탕에 오티 머리와 아이보리 얼굴선.">
+            <span class="flip__face flip__back">
+              <img src="assets/svg/ot_coaster_back.svg" width="460" height="460" alt="코스터 뒷면. AFTER, DATE, WITH 세 줄을 적는 기록면.">
+              <svg class="flip__ink" viewBox="0 0 99 99" aria-hidden="true">
+                <text id="ink-after" x="34" y="42.6"></text>
+                <text id="ink-date" x="34" y="54.6"></text>
+                <text id="ink-with" x="34" y="66.6"></text>
+              </svg>
+            </span>
           </span>
         </button>
         <p class="coaster__hint" id="flip-hint" aria-hidden="true">눌러서 뒤집기</p>
       </div>
+      <form class="note" id="note" autocomplete="off" aria-labelledby="note-title">
+          <p class="note__title" id="note-title">오늘 밤을 뒷면에 적어 보세요.</p>
+          <label class="note__row"><span>AFTER</span><input name="after" maxlength="20" placeholder="무엇이 끝났나요" data-ink="ink-after"></label>
+          <label class="note__row"><span>DATE</span><input name="date" maxlength="16" placeholder="2026.11.22" data-ink="ink-date"></label>
+          <label class="note__row"><span>WITH</span><input name="with" maxlength="20" placeholder="누구와 있었나요" data-ink="ink-with"></label>
+          <button class="btn btn--ink" type="button" id="note-save">이미지로 저장<span class="arr" aria-hidden="true">↓</span></button>
+          <p class="note__status" id="note-status" role="status"></p>
+        </form>
     </div>
   </section>
 

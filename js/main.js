@@ -122,20 +122,25 @@
   });
 })();
 
-/* ---------- 굿즈: 코스터 앞면 고르기와 뒤집기 ---------- */
+/* ---------- 굿즈: 코스터 앞면 고르기, 뒤집기, 뒷면에 기록 남기기 ----------
+   적는 대로 뒷면 세 줄에 손글씨로 들어간다. 줄보다 길면 글자 폭을 줄여 맞춘다. 저장하면 뒷면을 PNG로 내려받는다. */
 (() => {
   const flip = document.getElementById('flip');
   if (!flip) return;
   const front = document.getElementById('coaster-front');
   const hint = document.getElementById('flip-hint');
   const chips = [...document.querySelectorAll('.chips .chip')];
+  const inputs = [...document.querySelectorAll('#note input[data-ink]')];
+  const status = document.getElementById('note-status');
+  const save = document.getElementById('note-save');
+  const LINE = { x: 34, w: 46, size: 7.4, y: { after: 42.6, date: 54.6, with: 66.6 } };   // 도안(99mm) 좌표
+  const PEN = '"Nanum Pen Script", "Apple SD Gothic Neo", cursive';
 
   function setFlipped(on) {
     flip.setAttribute('aria-pressed', String(on));
     flip.setAttribute('aria-label', on ? '코스터 앞면 보기' : '코스터 뒤집어 뒷면 보기');
     hint.textContent = on ? '다시 누르면 앞면' : '눌러서 뒤집기';
   }
-
   flip.addEventListener('click', () => setFlipped(flip.getAttribute('aria-pressed') !== 'true'));
   chips.forEach(c => c.addEventListener('click', () => {
     chips.forEach(o => o.setAttribute('aria-pressed', String(o === c)));
@@ -143,6 +148,59 @@
     front.alt = c.dataset.alt;
     setFlipped(false);
   }));
+
+  if (!inputs.length) return;
+  const dateInput = inputs.find(i => i.name === 'date');
+  if (dateInput && !dateInput.value) {
+    const d = new Date();
+    dateInput.value = `${d.getFullYear()}.${String(d.getMonth() + 1).padStart(2, '0')}.${String(d.getDate()).padStart(2, '0')}`;
+  }
+
+  function ink(input) {
+    const t = document.getElementById(input.dataset.ink);
+    t.textContent = input.value.trim();
+    t.removeAttribute('textLength'); t.removeAttribute('lengthAdjust');
+    try {
+      if (t.getComputedTextLength() > LINE.w) { t.setAttribute('textLength', LINE.w); t.setAttribute('lengthAdjust', 'spacingAndGlyphs'); }
+    } catch (e) { /* 화면에 없을 때는 길이를 못 잴 수 있다 */ }
+  }
+  inputs.forEach(i => {
+    ink(i);
+    i.addEventListener('input', () => ink(i));
+    i.addEventListener('focus', () => setFlipped(true));
+  });
+  if (document.fonts) document.fonts.load(`20px ${PEN}`, '오늘밤기록').then(() => inputs.forEach(ink)).catch(() => {});
+
+  save.addEventListener('click', async () => {
+    status.textContent = '이미지를 만드는 중이에요';
+    try {
+      const S = 1200, k = S / 99;
+      const c = document.createElement('canvas'); c.width = c.height = S;
+      const x = c.getContext('2d');
+      const art = new Image(); art.src = 'assets/svg/ot_coaster_back.svg';
+      await art.decode();
+      x.drawImage(art, 0, 0, S, S);
+      if (document.fonts) await document.fonts.load(`${LINE.size * k}px ${PEN}`, inputs.map(i => i.value).join('') || '가');
+      x.fillStyle = '#1f2a22';
+      x.font = `${LINE.size * k}px ${PEN}`;
+      for (const i of inputs) {
+        const v = i.value.trim();
+        if (!v) continue;
+        const w = x.measureText(v).width, max = LINE.w * k;
+        x.save(); x.translate(LINE.x * k, LINE.y[i.name] * k);
+        if (w > max) x.scale(max / w, 1);
+        x.fillText(v, 0, 0); x.restore();
+      }
+      const blob = await new Promise(r => c.toBlob(r, 'image/png'));
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob); a.download = 'extra-time-coaster.png';
+      document.body.appendChild(a); a.click(); a.remove();
+      setTimeout(() => URL.revokeObjectURL(a.href), 4000);
+      status.textContent = '저장했어요. 오늘 밤의 코스터예요.';
+    } catch (e) {
+      status.textContent = '이미지를 만들지 못했어요. 한 번 더 눌러 주세요.';
+    }
+  });
 })();
 
 /* ---------- 스크롤 연출 공통 ----------
