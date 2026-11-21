@@ -196,6 +196,15 @@
 
   window.PixelOT = PixelOT;
 
+  // 홈 첫 화면 불 켜기: 불 켜진 사진이 받아지면 시작한다. 늦으면 2.5초 뒤에라도 켠다.
+  const heroSec = document.querySelector('.hero');
+  const lit = heroSec && heroSec.querySelector('.hero__photo');
+  if (lit) {
+    const on = () => heroSec.classList.add('is-on');
+    if (lit.complete && lit.naturalWidth) on();
+    else { lit.addEventListener('load', on, { once: true }); lit.addEventListener('error', on, { once: true }); setTimeout(on, 2500); }
+  }
+
   // 홈 첫 화면: 누를 때마다 노트북을 꺼내 오늘의 기록을 남긴다.
   const hero = document.getElementById('ot');
   if (hero) PixelOT(hero, {

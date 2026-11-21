@@ -11,7 +11,9 @@
 <meta property="og:image" content="assets/img/pub_bar-1280.webp">
 <link rel="icon" href="assets/svg/et_symbol_small.svg" type="image/svg+xml">
 <link rel="preload" href="assets/fonts/paperlogy-700.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" as="image" href="assets/img/pub_bar-1920.webp" imagesrcset="assets/img/pub_bar-800.webp 800w, assets/img/pub_bar-1280.webp 1280w, assets/img/pub_bar-1920.webp 1920w" imagesizes="100vw" fetchpriority="high">
+<link rel="preload" as="image" href="assets/img/pub_bar-close-1920.webp" imagesrcset="assets/img/pub_bar-close-800.webp 800w, assets/img/pub_bar-close-1280.webp 1280w, assets/img/pub_bar-close-1920.webp 1920w" imagesizes="100vw" fetchpriority="high">
+<link rel="preload" as="image" href="assets/img/pub_bar-1920.webp" imagesrcset="assets/img/pub_bar-800.webp 800w, assets/img/pub_bar-1280.webp 1280w, assets/img/pub_bar-1920.webp 1920w" imagesizes="100vw">
+<script>(function(){var d=document.documentElement,seen=false;try{seen=!!sessionStorage.getItem('et-open');sessionStorage.setItem('et-open','1')}catch(e){}if(!seen&&!matchMedia('(prefers-reduced-motion: reduce)').matches)d.classList.add('opening')})()</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding&amp;display=swap">
@@ -39,6 +41,7 @@
 <main id="main">
 
   <section class="hero" aria-labelledby="hero-line">
+    <img class="hero__dark" src="assets/img/pub_bar-close-1280.webp" srcset="assets/img/pub_bar-close-800.webp 800w, assets/img/pub_bar-close-1280.webp 1280w, assets/img/pub_bar-close-1920.webp 1920w" sizes="100vw" width="2400" height="1350" fetchpriority="high" alt="">
     <img class="hero__photo" src="assets/img/pub_bar-1280.webp" srcset="assets/img/pub_bar-800.webp 800w, assets/img/pub_bar-1280.webp 1280w, assets/img/pub_bar-1920.webp 1920w" sizes="100vw" width="2400" height="1350" fetchpriority="high" alt="불이 낮게 켜진 EXTRA TIME 펍의 바. 천장에는 시그니처 라인 모양의 조명이 지나가고, 테이블에는 마시다 만 맥주잔이 남아 있다.">
     <div class="hero__shade" aria-hidden="true"></div>
     <div class="wrap hero__in">
@@ -47,6 +50,7 @@
                 aria-label="픽셀 오티. 누르면 노트북을 꺼내 오늘의 기록을 남깁니다.">
           <canvas width="32" height="34" aria-hidden="true"></canvas>
         </button>
+        <svg class="hero__glow" viewBox="0 0 326.12 98" aria-hidden="true"><path fill="currentColor" d="M0 0L113.01 0A14 14 0 0 1 124.96 6.7L141.69 34.09A4 4 0 0 0 145.11 36L162.46 36L162.46 46L145.11 46A14 14 0 0 1 133.16 39.3L116.43 11.91A4 4 0 0 0 113.01 10L6.12 10ZM163.66 36L181.01 36A4 4 0 0 0 184.43 34.09L201.16 6.7A14 14 0 0 1 213.11 0L326.12 0L320 10L213.11 10A4 4 0 0 0 209.69 11.91L192.96 39.3A14 14 0 0 1 181.01 46L163.66 46Z"/></svg>
         <svg class="hero__word" viewBox="0 0 326.12 98" role="img" aria-label="EXTRA TIME">
           <path fill="currentColor" d="M0 0L113.01 0A14 14 0 0 1 124.96 6.7L141.69 34.09A4 4 0 0 0 145.11 36L162.46 36L162.46 46L145.11 46A14 14 0 0 1 133.16 39.3L116.43 11.91A4 4 0 0 0 113.01 10L6.12 10ZM163.66 36L181.01 36A4 4 0 0 0 184.43 34.09L201.16 6.7A14 14 0 0 1 213.11 0L326.12 0L320 10L213.11 10A4 4 0 0 0 209.69 11.91L192.96 39.3A14 14 0 0 1 181.01 46L163.66 46Z"/>
           <path fill="currentColor" d="M6.97 94.52H21.6V98H3.06V70H21.01V73.44H6.97V81.82H20.18V85.19H6.97ZM47.47 80.44 54.11 70H58.7L49.76 83.25L59.93 98H54.98L47.31 86.21L39.8 98H34.97L44.98 83.17L35.96 70H40.75ZM84.73 98H80.81V73.44H71.83V70H93.7V73.44H84.73ZM112.17 98H108.26V70H117.24Q119.25 70 121.07 70.42Q122.89 70.83 124.26 71.74Q125.62 72.65 126.41 74.13Q127.2 75.62 127.2 77.75Q127.2 80.84 125.3 82.73Q123.41 84.63 120.4 85.15L128.23 98H123.48L116.37 85.54H112.17ZM112.17 82.26H116.68Q118.07 82.26 119.25 82.02Q120.44 81.79 121.33 81.25Q122.22 80.72 122.73 79.87Q123.25 79.02 123.25 77.75Q123.25 76.49 122.73 75.64Q122.22 74.79 121.37 74.27Q120.52 73.76 119.37 73.54Q118.23 73.32 116.96 73.32H112.17ZM144.53 98H140.18L152.32 70H155.88L167.9 98H163.47L160.62 91.12H147.33ZM148.72 87.68H159.2L153.98 74.55ZM212.87 98H208.95V73.44H199.98V70H221.85V73.44H212.87ZM240.32 98H236.4V70H240.32ZM272.43 91.51H272.51L280.78 70H286.87V98H282.95V74.59H282.87L273.58 98H271.09L261.83 74.59H261.75V98H257.96V70H264.05ZM308.42 94.52H323.06V98H304.51V70H322.46V73.44H308.42V81.82H321.63V85.19H308.42Z"/>
