@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>오티 · EXTRA TIME</title>
+<meta name="description" content="오티(Overtime, 연장전). 표정 없는 얼굴에 선 하나, 끝난 뒤에 나타나 곁에 남는 캐릭터.">
+<meta name="theme-color" content="#20281f">
+<meta property="og:title" content="오티 · EXTRA TIME">
+<meta property="og:description" content="오티(Overtime, 연장전). 표정 없는 얼굴에 선 하나, 끝난 뒤에 나타나 곁에 남는 캐릭터.">
+<meta property="og:image" content="assets/img/pub_bar-1280.webp">
+<link rel="icon" href="assets/svg/et_symbol_small.svg" type="image/svg+xml">
+<link rel="preload" href="assets/fonts/paperlogy-700.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<a class="skip" href="#main">본문으로 건너뛰기</a>
+
+<header class="bar">
+  <div class="wrap bar__in">
+    <a class="bar__mark" href="index.html" aria-label="EXTRA TIME 홈">
+      <svg viewBox="0 0 326.12 46" aria-hidden="true"><path fill="currentColor" d="M0 0L113.01 0A14 14 0 0 1 124.96 6.7L141.69 34.09A4 4 0 0 0 145.11 36L162.46 36L162.46 46L145.11 46A14 14 0 0 1 133.16 39.3L116.43 11.91A4 4 0 0 0 113.01 10L6.12 10ZM163.66 36L181.01 36A4 4 0 0 0 184.43 34.09L201.16 6.7A14 14 0 0 1 213.11 0L326.12 0L320 10L213.11 10A4 4 0 0 0 209.69 11.91L192.96 39.3A14 14 0 0 1 181.01 46L163.66 46Z"/></svg>
+      <span>EXTRA TIME</span>
+    </a>
+    <nav aria-label="페이지">
+      <div class="bar__nav">
+        <a href="ot.html" aria-current="page">오티</a>
+        <a href="editions.html">에디션</a>
+        <a href="goods.html">굿즈</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="ot-head sec--dark" aria-labelledby="ot-title">
+    <div class="wrap ot-head__in">
+      <div class="ot-head__copy enter">
+        <p class="eyebrow">CHARACTER</p>
+        <h1 id="ot-title" class="ot-head__name">오티 <span>OT</span></h1>
+        <p class="ot-head__en">Overtime · 연장전</p>
+        <p class="ot-head__ko">끝났지만 아직 끝나지 않은 시간</p>
+      </div>
+      <figure class="photo ot-head__photo">
+        <img src="assets/img/pub_ot_portrait-960.webp" srcset="assets/img/pub_ot_portrait-640.webp 640w, assets/img/pub_ot_portrait-960.webp 960w, assets/img/pub_ot_portrait-1440.webp 1440w" sizes="(min-width: 1200px) 500px, (min-width: 900px) 40vw, calc(100vw - 32px)" width="1440" height="1800" fetchpriority="high" alt="펍의 나무 바 위에 홀로 선 오티. 뒤로 낮은 조명과 술병이 흐릿하게 보인다.">
+      </figure>
+    </div>
+  </section>
+
+  <section class="sec sec--paper turn" aria-labelledby="turn-title">
+    <div class="wrap turn__in">
+      <div class="turn__viewer">
+        <div class="turn__stage" id="turn" tabindex="0" role="slider"
+             aria-label="오티 회전 뷰어. 좌우로 끌거나 방향키로 돌립니다." aria-describedby="turn-desc"
+             aria-valuemin="0" aria-valuemax="345" aria-valuenow="0" aria-valuetext="0°">
+          <img class="is-on" src="assets/img/turn/ot_00-1072.webp"
+               srcset="assets/img/turn/ot_00-640.webp 640w, assets/img/turn/ot_00-1072.webp 1072w"
+               sizes="(min-width: 600px) 520px, calc(100vw - 32px)" width="1072" height="1228" alt="" draggable="false">
+        </div>
+        <p class="sr-only" id="turn-desc">전북 유니폼을 입은 오티. 얼굴에는 V자로 꺾인 선 하나만 있고 눈, 코, 입은 없다.</p>
+        <div class="turn__range">
+          <label for="turn-angle">회전</label>
+          <input id="turn-angle" type="range" min="0" max="23" step="1" value="0">
+          <output for="turn-angle" id="turn-deg" aria-hidden="true">0°</output>
+        </div>
+      </div>
+      <div class="turn__copy">
+        <h2 id="turn-title" class="h2">말 대신 곁에 남는 것</h2>
+        <p class="turn__hint">끌어서 돌려 보거나, 아래 설정을 눌러 보세요.</p>
+        <ol class="traits">
+            <li>
+              <button class="trait" type="button" aria-pressed="false" data-frame="0">
+                <span class="trait__num">01</span>
+                <span class="trait__txt"><span class="trait__title">끝난 뒤에 나타난다</span><span class="trait__body">마지막 사람이 일어날 때까지 남는다.</span></span>
+              </button>
+            </li>
+            <li>
+              <button class="trait" type="button" aria-pressed="false" data-frame="2">
+                <span class="trait__num">02</span>
+                <span class="trait__txt"><span class="trait__title">표정이 없다</span><span class="trait__body">그날의 감정은 보는 사람이 채운다.</span></span>
+              </button>
+            </li>
+            <li>
+              <button class="trait" type="button" aria-pressed="false" data-frame="0">
+                <span class="trait__num">03</span>
+                <span class="trait__txt"><span class="trait__title">얼굴의 선</span><span class="trait__body">서로 다른 두 길이 함께 내려앉는 자리. EXTRA TIME의 시그니처 라인과 같은 선이다.</span></span>
+              </button>
+            </li>
+            <li>
+              <button class="trait" type="button" aria-pressed="false" data-frame="6">
+                <span class="trait__num">04</span>
+                <span class="trait__txt"><span class="trait__title">큰 귀</span><span class="trait__body">말하는 대신 듣는 귀.</span></span>
+              </button>
+            </li>
+            <li>
+              <button class="trait" type="button" aria-pressed="false" data-frame="12">
+                <span class="trait__num">05</span>
+                <span class="trait__txt"><span class="trait__title">그 자리의 옷</span><span class="trait__body">어디서든 그 자리의 옷을 입고 섞인다.</span></span>
+              </button>
+            </li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section class="next sec--dark" aria-labelledby="ot-next">
+    <div class="wrap next__in">
+      <h2 id="ot-next" class="next__line">오티는 어디서든 그 자리의 옷을 입고 섞입니다.</h2>
+      <a class="btn" href="editions.html">에디션 보기<span class="arr" aria-hidden="true">→</span></a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap foot__in">
+    <div class="foot__brand">
+      <svg viewBox="0 0 326.12 46" aria-hidden="true"><path fill="currentColor" d="M0 0L113.01 0A14 14 0 0 1 124.96 6.7L141.69 34.09A4 4 0 0 0 145.11 36L162.46 36L162.46 46L145.11 46A14 14 0 0 1 133.16 39.3L116.43 11.91A4 4 0 0 0 113.01 10L6.12 10ZM163.66 36L181.01 36A4 4 0 0 0 184.43 34.09L201.16 6.7A14 14 0 0 1 213.11 0L326.12 0L320 10L213.11 10A4 4 0 0 0 209.69 11.91L192.96 39.3A14 14 0 0 1 181.01 46L163.66 46Z"/></svg>
+      <p>EXTRA TIME</p>
+    </div>
+    <div class="foot__meta">
+      <p>장소 에디션은 협업을 가정한 시안입니다.</p>
+      <p>Designed by 윤동기</p>
+      <p>© 2026 EXTRA TIME</p>
+    </div>
+  </div>
+</footer>
+<script src="js/main.js" defer></script>
+</body>
+</html>
