@@ -181,7 +181,7 @@ button{font:inherit;color:inherit}
     linear-gradient(0deg, var(--pub) 0%, rgba(32,40,31,0) 24%, rgba(32,40,31,0) 80%, var(--pub) 100%)}
 
 .turn__in{display:flex;flex-wrap:wrap;align-items:center;gap:clamp(40px, 5vw, 96px)}
-.turn__viewer{flex:1 1 520px;min-width:0;display:flex;flex-direction:column;align-items:center;gap:20px}
+.turn__viewer{flex:1 1 440px;min-width:0;display:flex;flex-direction:column;align-items:center;gap:20px}
 .turn__stage{position:relative;width:100%;max-width:520px;aspect-ratio:1072 / 1228;cursor:grab;touch-action:pan-y;
   user-select:none;-webkit-user-select:none;border-radius:4px;
   /* 렌더의 바닥 그림자가 사진 가장자리에서 칼같이 끊기지 않게 양옆을 흐린다 */
@@ -233,8 +233,8 @@ button{font:inherit;color:inherit}
 /* 스크롤하면 배경과 오티가 서로 다른 속도로 움직여 깊이가 생긴다(main.js). 오티 판은 바닥 그림자 가장자리를 흐린다 */
 .place-card__bg{--ty:var(--bg-y, 0px)}
 .place-card__fig{--ty:var(--fig-y, 0px);z-index:-2 !important;
-  -webkit-mask-image:radial-gradient(ellipse 30% 62% at 50% 58%, #000 62%, transparent 100%);
-  mask-image:radial-gradient(ellipse 30% 62% at 50% 58%, #000 62%, transparent 100%)}
+  -webkit-mask-image:linear-gradient(90deg, transparent 4%, #000 24%, #000 76%, transparent 96%);
+  mask-image:linear-gradient(90deg, transparent 4%, #000 24%, #000 76%, transparent 96%)}
 .place-card__shade{position:absolute;inset:-2px 0;z-index:-1;
   background:
     linear-gradient(180deg, var(--pub) 0%, rgba(32,40,31,0) 16%, rgba(32,40,31,0) 62%, var(--pub) 100%),
@@ -282,6 +282,8 @@ button{font:inherit;color:inherit}
 .coaster .duo{gap:clamp(40px, 6vw, 112px)}
 .coaster .body-muted{margin-top:20px}
 .chips{margin-top:clamp(28px, 3vw, 40px);display:flex;flex-wrap:wrap;gap:8px}
+.chips .chip{padding:0 15px}
+.coaster .duo__copy{flex-basis:420px}
 .chips .chip{color:var(--ink)}
 .chips .chip[aria-pressed="true"]{background:var(--charcoal);border-color:var(--charcoal);color:var(--paper)}
 .coaster__view{flex:1 1 420px;min-width:0;display:flex;flex-direction:column;align-items:center;gap:20px}
