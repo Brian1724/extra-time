@@ -134,7 +134,9 @@
   const status = document.getElementById('note-status');
   const save = document.getElementById('note-save');
   const LINE = { x: 34, w: 46, size: 7.4, y: { after: 42.6, date: 54.6, with: 66.6 } };   // 도안(99mm) 좌표
-  const PEN = '"Nanum Pen Script", "Apple SD Gothic Neo", cursive';
+  const PEN = '"Nanum Pen Script", "Apple SD Gothic Neo", sans-serif';
+  const MONO = '"Nanum Gothic Coding", ui-monospace, monospace';
+  const DATE = { size: 4.6, y: 54.6 };   // 날짜는 고정폭으로 찍는다
 
   function setFlipped(on) {
     flip.setAttribute('aria-pressed', String(on));
@@ -169,7 +171,13 @@
     i.addEventListener('input', () => ink(i));
     i.addEventListener('focus', () => setFlipped(true));
   });
-  if (document.fonts) document.fonts.load(`20px ${PEN}`, '오늘밤기록').then(() => inputs.forEach(ink)).catch(() => {});
+  // 웹 글꼴은 한글·숫자·영문이 따로 받아진다. 무엇이든 새로 받아지면 길이를 다시 잰다.
+  if (document.fonts) {
+    const SAMPLE = '오늘밤기록전북서울광주 0123456789:.,-ABCabc';
+    Promise.all([document.fonts.load(`20px ${PEN}`, SAMPLE), document.fonts.load(`20px ${MONO}`, SAMPLE)])
+      .then(() => inputs.forEach(ink)).catch(() => {});
+    document.fonts.addEventListener('loadingdone', () => inputs.forEach(ink));
+  }
 
   save.addEventListener('click', async () => {
     status.textContent = '이미지를 만드는 중이에요';
@@ -180,14 +188,17 @@
       const art = new Image(); art.src = 'assets/svg/ot_coaster_back.svg';
       await art.decode();
       x.drawImage(art, 0, 0, S, S);
-      if (document.fonts) await document.fonts.load(`${LINE.size * k}px ${PEN}`, inputs.map(i => i.value).join('') || '가');
-      x.fillStyle = '#1f2a22';
-      x.font = `${LINE.size * k}px ${PEN}`;
+      const all = inputs.map(i => i.value).join('') || '가';
+      if (document.fonts) await Promise.all([document.fonts.load(`${LINE.size * k}px ${PEN}`, all), document.fonts.load(`${DATE.size * k}px ${MONO}`, all)]);
       for (const i of inputs) {
         const v = i.value.trim();
         if (!v) continue;
+        const isDate = i.name === 'date';
+        x.fillStyle = isDate ? '#2b3528' : '#1f2a22';
+        x.font = isDate ? `${DATE.size * k}px ${MONO}` : `${LINE.size * k}px ${PEN}`;
+        x.letterSpacing = isDate ? `${DATE.size * k * .06}px` : '0px';
         const w = x.measureText(v).width, max = LINE.w * k;
-        x.save(); x.translate(LINE.x * k, LINE.y[i.name] * k);
+        x.save(); x.translate(LINE.x * k, (isDate ? DATE.y : LINE.y[i.name]) * k);
         if (w > max) x.scale(max / w, 1);
         x.fillText(v, 0, 0); x.restore();
       }

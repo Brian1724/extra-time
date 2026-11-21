@@ -317,7 +317,9 @@ button{font:inherit;color:inherit}
 .flip__back img{display:block;width:100%;height:100%;border-radius:50%}
 /* 뒷면 세 줄 위에 손글씨로 들어가는 기록. 좌표는 도안(99×99mm)과 같다 */
 .flip__ink{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none}
-.flip__ink text{font-family:"Nanum Pen Script", "Apple SD Gothic Neo", cursive;font-size:7.4px;fill:#1f2a22}
+.flip__ink text{font-family:"Nanum Pen Script", "Apple SD Gothic Neo", sans-serif;font-size:7.4px;fill:#1f2a22}
+/* 날짜는 손글씨보다 찍은 날짜도장처럼 */
+.flip__ink #ink-date{font-family:var(--mono);font-size:4.6px;letter-spacing:.06em;fill:#2b3528}
 
 /* 코스터에 기록 남기기 */
 .note{width:min(100%, 460px);display:grid;gap:4px}
